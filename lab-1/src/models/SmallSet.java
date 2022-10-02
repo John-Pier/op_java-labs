@@ -30,10 +30,6 @@ public class SmallSet<T> implements Set<T> {
                 return true;
             }
 
-            if (indexes[hash] == -1) {
-                return values[hash].equals(o);
-            }
-
             int currentIndex = hash;
             int attempt = 0;
             while (indexes[currentIndex] != -1 && attempt++ < values.length) {
@@ -44,7 +40,7 @@ public class SmallSet<T> implements Set<T> {
                 }
             }
 
-            if (attempt >= size()) {
+            if (attempt >= values.length) {
                 return false;
             }
 
