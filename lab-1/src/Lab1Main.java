@@ -1,5 +1,6 @@
 import models.SmallSet;
 
+import java.time.*;
 import java.util.*;
 
 public class Lab1Main {
@@ -39,33 +40,45 @@ public class Lab1Main {
     }
 
     private static List<TestData<Integer>> getTestData() {
-        int testCount = 1;
+        int testCount = 1000000;
         List<TestData<Integer>> testsData = new ArrayList<>(testCount);
         for (int i = 0; i < testCount; i++) {
-            TestData<Integer> test = new TestData<>() {
+            Integer[] a = new Integer[(int)(500 + Math.random() * 500)];
+            Integer[] b = new Integer[(int)(500 + Math.random() * 500)];
+
+            int support = (int)(Math.random() * 400);
+            fillArray(a, 0);
+            fillArray(b, support);
+
+            testsData.add(new TestData<>() {
                 @Override
                 public Integer[] getA() {
-                    // TODO
-                    return new Integer[]{1, 3, 4, 5, 6, 7, 8};
+                    return a;
                 }
 
                 @Override
                 public Integer[] getB() {
-                    // TODO
-                    return new Integer[]{9, 10, 1, 5, 6, 7, 8};
+                    return b;
                 }
-            };
-
-            testsData.add(test);
+            });
         }
         return testsData;
     }
 
-    private static void testSet(List<TestData<Integer>> testsData) {
-        // TODO
-        for (TestData<Integer> testData : testsData) {
-            System.out.println(Arrays.toString(getIntersection(testData.getA(), testData.getB())));
+    private static void fillArray(Integer[] array, int start) {
+        for (int i = 0; i < array.length; i ++) {
+            array[i] = start + i;
         }
+    }
+
+    private static void testSet(List<TestData<Integer>> testsData) {
+        Instant start = Instant.now();
+        for (TestData<Integer> testData : testsData) {
+            getIntersection(testData.getA(), testData.getB());
+        }
+        Instant finish = Instant.now();
+        long elapsed = Duration.between(start, finish).toNanos();
+        System.out.println("Время выполнения для " + testsData.size() + " попыток, мс: " + elapsed / 1_000_000d);
     }
 
     @FunctionalInterface
