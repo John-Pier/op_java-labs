@@ -40,7 +40,7 @@ public class Lab1Main {
     }
 
     private static List<TestData<Integer>> getTestData() {
-        int testCount = 100000;
+        int testCount = 10000;
         int sizeMultiple = 1000;
         List<TestData<Integer>> testsData = new ArrayList<>(testCount);
         for (int i = 0; i < testCount; i++) {
