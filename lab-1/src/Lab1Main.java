@@ -39,7 +39,7 @@ public class Lab1Main {
     }
 
     private static List<TestData<Integer>> getTestData() {
-        int testCount = 50;
+        int testCount = 1;
         List<TestData<Integer>> testsData = new ArrayList<>(testCount);
         for (int i = 0; i < testCount; i++) {
             TestData<Integer> test = new TestData<>() {
@@ -64,7 +64,7 @@ public class Lab1Main {
     private static void testSet(List<TestData<Integer>> testsData) {
         // TODO
         for (TestData<Integer> testData : testsData) {
-            getIntersection(testData.getA(), testData.getB());
+            System.out.println(Arrays.toString(getIntersection(testData.getA(), testData.getB())));
         }
     }
 

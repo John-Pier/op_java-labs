@@ -22,20 +22,30 @@ public class SmallSet<T> implements Set<T> {
         if (o != null) {
             int hash = getHashCode(o);
 
+//            System.out.println(o + " contains " + Arrays.toString(values));
+//            System.out.println(hash + " h_contains " + Arrays.toString(indexes));
+//            System.out.println("------------");
+
+            if (values[hash].equals(o)) {
+                return true;
+            }
+
             if (indexes[hash] == -1) {
-                System.out.print(o + ":");
-                System.out.println(values[hash]);
                 return values[hash].equals(o);
             }
 
-            // TODO
             int currentIndex = hash;
             int attempt = 0;
             while (indexes[currentIndex] != -1 && attempt++ < values.length) {
                 currentIndex = indexes[currentIndex];
+
+                if (values[currentIndex].equals(o)) {
+                    return true;
+                }
             }
+
             if (attempt >= size()) {
-                return  false;
+                return false;
             }
 
             return values[currentIndex].equals(o);
@@ -46,6 +56,10 @@ public class SmallSet<T> implements Set<T> {
     @Override
     public boolean add(T t) {
         int hash = getHashCode(t);
+
+//        System.out.println(t + " ->  " + Arrays.toString(values));
+//        System.out.println(hash + " h->  " + Arrays.toString(indexes));
+//        System.out.println("------------");
 
         if (values[hash] == null) {
             values[hash] = t;
@@ -58,7 +72,7 @@ public class SmallSet<T> implements Set<T> {
             currentIndex = indexes[currentIndex];
         }
         if (attempt >= size()) {
-            return  false;
+            return false;
         }
 
         indexes[currentIndex] = findEmptyIndex(currentIndex);
@@ -68,7 +82,7 @@ public class SmallSet<T> implements Set<T> {
     }
 
     private int findEmptyIndex(int from) {
-        for (int i = from % size(); i < size(); i ++) {
+        for (int i = from % size(); i < size(); i++) {
             if (values[i] == null) {
                 return i;
             }
@@ -79,7 +93,7 @@ public class SmallSet<T> implements Set<T> {
 
     private int getHashCode(Object element) {
         int hash = element.hashCode();
-        return hash % size();
+        return Math.abs(hash) % size();
     }
 
     @Override
