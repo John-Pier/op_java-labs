@@ -40,17 +40,20 @@ public class Lab1Main {
     }
 
     private static List<TestData<Integer>> getTestData() {
-        int testCount = 1000000;
+        int testCount = 100000;
+        int sizeMultiple = 1000;
         List<TestData<Integer>> testsData = new ArrayList<>(testCount);
         for (int i = 0; i < testCount; i++) {
-            Integer[] a = new Integer[(int)(500 + Math.random() * 500)];
-            Integer[] b = new Integer[(int)(500 + Math.random() * 500)];
-
-            int support = (int)(Math.random() * 400);
-            fillArray(a, 0);
-            fillArray(b, support);
-
             testsData.add(new TestData<>() {
+                final Integer[] a = new Integer[(int)(sizeMultiple + Math.random() * sizeMultiple)];
+                final Integer[] b = new Integer[(int)(sizeMultiple + Math.random() * sizeMultiple)];
+
+                {
+                    int support = (int)(Math.random() * sizeMultiple * 0.8);
+                    fillArray(a, 0);
+                    fillArray(b, support);
+                }
+
                 @Override
                 public Integer[] getA() {
                     return a;
