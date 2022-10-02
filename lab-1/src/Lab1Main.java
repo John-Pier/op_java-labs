@@ -76,12 +76,15 @@ public class Lab1Main {
 
     private static void testSet(List<TestData<Integer>> testsData) {
         Instant start = Instant.now();
-        for (TestData<Integer> testData : testsData) {
-            getIntersection(testData.getA(), testData.getB());
+        int attempts = 30;
+        for (int attempt = 0; attempt < attempts; attempt ++) {
+            for (TestData<Integer> testData : testsData) {
+                getIntersection(testData.getA(), testData.getB());
+            }
         }
         Instant finish = Instant.now();
         long elapsed = Duration.between(start, finish).toNanos();
-        System.out.println("Время выполнения для " + testsData.size() + " попыток, мс: " + elapsed / 1_000_000d);
+        System.out.println("Среднее время выполнения для " + testsData.size() + " вызовов, мс: " + elapsed / (1_000_000d * attempts));
     }
 
     @FunctionalInterface
