@@ -62,6 +62,11 @@ public class SmallSet<T> implements Set<T> {
             return true;
         }
 
+        if (getHashCode(values[hash]) != hash) {
+            this.moveElement(hash, t);
+            return true;
+        }
+
         int currentIndex = hash;
         int attempt = 0;
         while (indexes[currentIndex] != -1 && attempt++ < values.length) {
@@ -75,6 +80,28 @@ public class SmallSet<T> implements Set<T> {
         values[indexes[currentIndex]] = t;
 
         return true;
+    }
+
+    private void moveElement(int hash, T t) {
+        T oldValue = values[hash];
+        int oldIndex = indexes[hash];
+
+        values[hash] = t;
+        indexes[hash] = -1;
+
+        int newIndex = findEmptyIndex(hash);
+        indexes[getPrevIndex(oldValue)] = newIndex;
+        values[newIndex] = oldValue;
+        indexes[newIndex] = oldIndex;
+    }
+
+    private int getPrevIndex(T oldValue) {
+        int currentIndex = getHashCode(oldValue);
+        while (values[indexes[currentIndex]] != oldValue) {
+            currentIndex = indexes[currentIndex];
+        }
+
+        return currentIndex;
     }
 
     private int findEmptyIndex(int from) {
