@@ -1,3 +1,7 @@
+import models.SortedStack;
+
+import java.util.*;
+
 public class Lab2Main {
     public static void main(String[] args) {
         // 1-7, 3-5
@@ -45,6 +49,15 @@ public class Lab2Main {
     // 3-5
     private static void runSecond() {
         System.out.println("3-5");
+        System.out.println("Test sorted stack");
+        var array = Arrays.stream((new Double[10])).map(i -> Math.random() * 100).toArray(Double[]::new);
 
+        System.out.println(Arrays.toString(array));
+
+        var stack = new SortedStack(array);
+        System.out.println("After sort");
+        while (!stack.isEmpty()) {
+            System.out.print(stack.pop() + " ");
+        }
     }
 }

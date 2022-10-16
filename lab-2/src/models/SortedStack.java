@@ -6,23 +6,23 @@ public class SortedStack implements CustomStack<Double> {
     private Stack<Double> stack = new Stack<>();
     private Stack<Double> helpStack = new Stack<>();
 
-    public SortedStack() {
+    public SortedStack() {}
 
+    public SortedStack(Double[] array) {
+        for (Double item: array) {
+            this.push(item);
+        }
     }
 
     @Override
     public void push(Double item) {
-        if (this.stack.empty() || this.stack.peek() > item) {
-            this.stack.push(item);
-            return;
+        while (!this.stack.isEmpty() && item > this.stack.peek()) {
+            this.helpStack.push(this.stack.pop());
         }
         this.stack.push(item);
-        this.resortStack();
-    }
-
-    private void resortStack() {
-
-
+        while (!this.helpStack.isEmpty()) {
+            this.stack.push(this.helpStack.pop());
+        }
     }
 
     @Override
