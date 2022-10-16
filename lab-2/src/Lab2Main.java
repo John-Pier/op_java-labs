@@ -1,20 +1,19 @@
-import com.johnpier.Main;
-
 public class Lab2Main {
     public static void main(String[] args) {
         // 1-7, 3-5
         runFirst();
+        runSecond();
     }
 
     // 1-7
     private static void runFirst() {
+        System.out.println("1-7");
         final int size = 4;
         int[][] image = new int[size][size];
 
-        int num = 10;
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                image[i][j] = num++;
+                image[i][j] = 10+ i + j;
             }
         }
 
@@ -41,5 +40,11 @@ public class Lab2Main {
             }
             System.out.println("\t");
         }
+    }
+
+    // 3-5
+    private static void runSecond() {
+        System.out.println("3-5");
+
     }
 }
