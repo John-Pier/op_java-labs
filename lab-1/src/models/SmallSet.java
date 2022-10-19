@@ -53,10 +53,6 @@ public class SmallSet<T> implements Set<T> {
     public boolean add(T t) {
         int hash = getHashCode(t);
 
-//        System.out.println(t + " ->  " + Arrays.toString(values));
-//        System.out.println(hash + " h->  " + Arrays.toString(indexes));
-//        System.out.println("------------");
-
         if (values[hash] == null) {
             values[hash] = t;
             return true;

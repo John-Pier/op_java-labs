@@ -1,6 +1,6 @@
 import models.SortedStack;
 
-import java.util.*;
+import java.util.Arrays;
 
 public class Lab2Main {
     public static void main(String[] args) {
@@ -23,8 +23,10 @@ public class Lab2Main {
 
         pintImg(image, size);
 
-        for (int i = 0; i < (int) Math.ceil(size / 2.0); i++) {
-            for (int j = 0; j < (int) Math.floor(size / 2.0); j++) {
+        int iLength = (int) Math.ceil(size / 2.0);
+        int jLength = (int) Math.floor(size / 2.0);
+        for (int i = 0; i < iLength; i++) {
+            for (int j = 0; j < jLength; j++) {
                 int tmp = image[i][j];
                 image[i][j] = image[j][size - 1 - i];
                 image[j][size - 1 - i] = image[size - 1 - i][size - 1 - j];
