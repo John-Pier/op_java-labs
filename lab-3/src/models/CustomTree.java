@@ -3,7 +3,9 @@ package models;
 public interface CustomTree<T extends Number> {
     void add(T element);
 
-    void searchNext(CustomTreeModel<Double> node);
+    Double searchNext(CustomTreeModel<Double> node);
+
+    CustomTreeModel<Double> searchNode(Double element);
 
     class CustomTreeModel<T> {
         T value;

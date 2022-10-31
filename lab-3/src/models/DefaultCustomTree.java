@@ -1,9 +1,5 @@
 package models;
 
-import org.w3c.dom.Node;
-
-import java.util.*;
-
 public class DefaultCustomTree implements CustomTree<Double> {
     CustomTreeModel<Double> root;
 
@@ -47,20 +43,33 @@ public class DefaultCustomTree implements CustomTree<Double> {
     }
 
     @Override
-    public void searchNext(CustomTreeModel<Double> node) {
-        var currentNode = this.root;
+    public Double searchNext(CustomTreeModel<Double> node) {
+        var currentNode = node;
+
+        if (currentNode.right != null) {
+            return searchMinInSubtree(currentNode.right);
+        }
+        currentNode = currentNode.parent;
 
         while (currentNode != null) {
-            if (node.value > currentNode.value) {
-                // todo
+            if (node.value >= currentNode.value) {
+                currentNode = currentNode.parent;
+            } else {
+                return currentNode.value;
             }
         }
+
+        return null;
+    }
+
+    private Double searchMinInSubtree(CustomTreeModel<Double> node) {
+        return null;
     }
 
     public CustomTreeModel<Double> searchNode(Double element) {
         var currentNode = this.root;
         while (currentNode != null) {
-            if (currentNode.value == element) {
+            if (currentNode.value.equals(element)) {
                 return currentNode;
             }
 
