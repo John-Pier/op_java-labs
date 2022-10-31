@@ -1,29 +1,40 @@
 import models.*;
 
-public class Lab3Main {
+import java.util.Arrays;
 
+public class Lab3Main {
+    static CustomTree<Double> tree = new DefaultCustomTree();
+    static int treeLength = 20;
+
+    static {
+        init();
+    }
+
+    private static void init() {
+        Double[] values = new Double[20];
+
+        for (int i = 0; i < 20; i++) {
+            values[i] = i + 1d;
+        }
+
+        Arrays.sort(values, (a, b) -> (int) (Math.signum(Math.random() - Math.random())));
+
+        Arrays.stream(values).forEach(a -> tree.add(a));
+    }
+
+    // 6
     // Напишите алгоритм поиска «следующего» узла для заданного узла в бинарном дереве поиска.
     // Считайте, что у каждого узла есть ссылка на его родителя.
     public static void main(String[] args) {
-        // 6
-        System.out.println("Hello world!");
-        CustomTree<Double> tree = new DefaultCustomTree();
+        test();
+    }
 
-        tree.add(10d);
-        tree.add(12d);
-        tree.add(9d);
-        tree.add(8d);
-        tree.add(6d);
-        tree.add(7d);
-        tree.add(5d);
-        tree.add(4d);
-        tree.add(11d);
-        tree.add(13d);//
-        tree.add(15d);
-        tree.add(14d);
-
-
-        System.out.println("First: " + 9);
-        System.out.println("Second: " + tree.searchNext(tree.searchNode(9d)));
+    private static void test() {
+        System.out.println("Testing...");
+        for (double i = 1d; i < treeLength; i++) {
+            System.out.println("First: " + i);
+            System.out.println("Second: " + tree.searchNext(tree.searchNode(i)));
+            System.out.println("--------");
+        }
     }
 }

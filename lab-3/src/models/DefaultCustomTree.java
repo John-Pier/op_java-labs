@@ -21,6 +21,7 @@ public class DefaultCustomTree implements CustomTree<Double> {
             if (newNode.value > currentNode.value) {
                 if (currentNode.right != null) {
                     currentNode = currentNode.right;
+                    continue;
                 } else {
                     newNode.parent = currentNode;
                     currentNode.right = newNode;
@@ -63,7 +64,16 @@ public class DefaultCustomTree implements CustomTree<Double> {
     }
 
     private Double searchMinInSubtree(CustomTreeModel<Double> node) {
-        return null;
+        if (node.left == null) {
+            return node.value;
+        }
+        var currentNode = node.left;
+
+        while (currentNode.left != null) {
+           currentNode = currentNode.left;
+        }
+
+        return currentNode.value;
     }
 
     public CustomTreeModel<Double> searchNode(Double element) {
