@@ -76,6 +76,7 @@ public class DefaultCustomTree implements CustomTree<Double> {
         return currentNode.value;
     }
 
+    @Override
     public CustomTreeModel<Double> searchNode(Double element) {
         var currentNode = this.root;
         while (currentNode != null) {
