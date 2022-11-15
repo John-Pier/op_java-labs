@@ -1,5 +1,4 @@
 public class Main {
-    // 8
     public static void main(String[] args) {
         System.out.println("Lab 4. Task 8");
         System.out.println("Test line");
@@ -7,11 +6,10 @@ public class Main {
         System.out.println(Integer.toBinaryString(setBytes(start, 2, 7)));
         System.out.println("Test image");
         printImage(Image, 16);
-        drawLine(Image, 16, 0, 14, 3); // oт 0 отсчет
+        drawLine(Image, 16, 3, 3, 3); // oт 0 отсчет
         System.out.println("--------\t\t--------");
         printImage(Image, 16);
     }
-
 
     private static final byte[] Image = new byte[]{-128, -128, -128, -128, -128, -128, -128, -128, -128, -128};
 
@@ -27,32 +25,28 @@ public class Main {
     private static void drawLine(byte[] screen, int width, int x1, int x2, int y) {
         int realWidth = width / 8;
         int dx = x2 - x1;
-        int i = x1;
         while (dx >= 0) {
-            int index = i / 8;
+            int i = x2 - dx;
+            int index = y*realWidth + i / 8;
             int di = i % 8;
-            byte element = screen[y*realWidth + index];
+            byte element = screen[index];
+
             if (dx <= (8 - di)) {
                 element = setBytes(element, di, di + dx);
                 dx = -1;
             }
             else {
-                element = setBytes(element, di, 8);
-                i += 8 - di;
+                element = setBytes(element, di, 7);
                 dx -= 8 - di;
             }
-            screen[y*realWidth + index] = element;
+
+            screen[index] = element;
         }
     }
 
     private static byte setBytes(byte value, int i1, int i2) {
         int mask1 = (1 << (8 - i1)) - 1;
         int mask2 = (1 << (7 - i2)) - 1;
-//        System.out.println(Integer.toBinaryString(value));
-//        System.out.println(Integer.toBinaryString(mask1));
-//        System.out.println(Integer.toBinaryString(mask2));
-//        System.out.println(Integer.toBinaryString(mask1 ^ mask2));
-//        System.out.println(Integer.toBinaryString(value | (mask1 ^ mask2)));
         return (byte) (value | (mask1 ^ mask2));
     }
 
