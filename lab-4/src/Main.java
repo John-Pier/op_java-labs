@@ -6,12 +6,12 @@ public class Main {
         System.out.println(Integer.toBinaryString(setBytes(start, 2, 7)));
         System.out.println("Test image");
         printImage(Image, 16);
-        drawLine(Image, 16, 3, 3, 3); // oт 0 отсчет
+        drawLine(Image, 16, 1, 8, 3); // oт 0 отсчет
         System.out.println("--------\t\t--------");
         printImage(Image, 16);
     }
 
-    private static final byte[] Image = new byte[]{-128, -128, -128, -128, -128, -128, -128, -128, -128, -128};
+    private static final byte[] Image = new byte[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
     /**
      * Содержимое монохромного экрана хранится в одномерном массиве байтов,
@@ -31,7 +31,7 @@ public class Main {
             int di = i % 8;
             byte element = screen[index];
 
-            if (dx <= (8 - di)) {
+            if (dx <= (7 - di)) {
                 element = setBytes(element, di, di + dx);
                 dx = -1;
             }
@@ -39,7 +39,6 @@ public class Main {
                 element = setBytes(element, di, 7);
                 dx -= 8 - di;
             }
-
             screen[index] = element;
         }
     }
@@ -54,9 +53,17 @@ public class Main {
         int realWidth = width / 8;
         for (int i = 0; i < screen.length; i++) {
             if ((i + 1) % realWidth == 0) {
-                System.out.println(Integer.toBinaryString(screen[i]).substring(24));
+                System.out.println(
+                        String.format("%32s", Integer.toBinaryString(screen[i]))
+                                .replace(' ', '0')
+                                .substring(24)
+                );
             } else {
-                System.out.print(Integer.toBinaryString(screen[i]).substring(24) + "\t\t");
+                System.out.print(
+                        String.format("%32s", Integer.toBinaryString(screen[i]))
+                                .replace(' ', '0')
+                                .substring(24) + "\t\t"
+                );
             }
         }
     }
