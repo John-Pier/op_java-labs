@@ -21,8 +21,8 @@ public class Main {
         // значит тут можем понять за 1 итерацию
 
         int numOfPoison = Math.round((float)(Math.random() * 100));
-        System.out.println(String.format("Пусть отравлена %d", numOfPoison));
-        System.out.println(String.format("В двоичном представлении: %s", toByteString(numOfPoison, 10)));
+        System.out.printf("Пусть отравлена %d%n", numOfPoison);
+        System.out.printf("В двоичном представлении: %s%n", toByteString(numOfPoison, 10));
         System.out.println("Начнем поиск: ");
         List<Integer> numberOfsStrips = foundBottles(numOfPoison);
         if (numberOfsStrips.isEmpty()) {
@@ -32,7 +32,7 @@ public class Main {
         System.out.println("Если у нас окрасились слудующие полоски: " + Arrays.toString(numberOfsStrips.toArray()));
         int result = recognizeCount(numberOfsStrips);
         System.out.println("То это полоска с номером: " + result);
-        System.out.println(String.format("В двоичном представлении: %s", toByteString(result, 10)));
+        System.out.printf("В двоичном представлении: %s%n", toByteString(result, 10));
     }
 
     static List<Integer> foundBottles(int numOfPoison) {
