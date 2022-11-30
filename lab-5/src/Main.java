@@ -16,12 +16,12 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Lab 5. Task 10");
 
-        // i - iй байт отвечает за бутылку)
+        // i - iй байт отвечает за бутылку
         // 2^10  комбинаций этих единиц и нулей в 10 битах
         // значит тут можем понять за 1 итерацию
 
-        int numOfPoison = Math.round((float)(Math.random() * 100));
-        System.out.printf("Пусть отравлена %d%n", numOfPoison);
+        int numOfPoison = Math.round((float)(Math.random() * 99));
+        System.out.printf("Пусть отравлена %d%n", numOfPoison + 1);
         System.out.printf("В двоичном представлении: %s%n", toByteString(numOfPoison, 10));
         System.out.println("Начнем поиск: ");
         List<Integer> numberOfsStrips = foundBottles(numOfPoison);
@@ -31,7 +31,7 @@ public class Main {
         }
         System.out.println("Если у нас окрасились слудующие полоски: " + Arrays.toString(numberOfsStrips.toArray()));
         int result = recognizeCount(numberOfsStrips);
-        System.out.println("То это полоска с номером: " + result);
+        System.out.println("То это полоска с номером: " + (result + 1));
         System.out.printf("В двоичном представлении: %s%n", toByteString(result, 10));
     }
 
