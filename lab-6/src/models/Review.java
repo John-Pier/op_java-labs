@@ -5,4 +5,5 @@ public class Review {
     String title;
     User user;
     String content;
+    Integer count;
 }
