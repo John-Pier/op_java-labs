@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Lab7_Main" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="LabMain7" />
+    <module name="lab-7" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
