@@ -17,7 +17,7 @@ public class LabMain7 {
     }
 
     private static ArrayList<ArrayList<String>> getAllSubSets(String[] set) {
-        int length = (int) Math.pow(2, set.length);
+        int length = 1 << set.length;
         var results = new ArrayList<ArrayList<String>>(length);
         results.add(new ArrayList<>());
 
