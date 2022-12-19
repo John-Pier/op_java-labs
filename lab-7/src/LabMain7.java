@@ -22,19 +22,19 @@ public class LabMain7 {
         results.add(new ArrayList<>());
 
         for (int i = 1; i < length; i++) {
-            results.add(getAllSet(set, i));
+            results.add(getSetsWithLength(set, i));
         }
         return results;
     }
 
-    private static ArrayList<String> getAllSet(String[] set, int maxIndex) {
+    private static ArrayList<String> getSetsWithLength(String[] set, int maxLength) {
         var result = new ArrayList<String>();
         int i = 0;
-        while (maxIndex > 0) {
-            if ((maxIndex & 1) > 0) {
+        while (maxLength > 0) {
+            if ((maxLength & 1) > 0) {
                 result.add(set[i]);
             }
-            maxIndex >>= 1;
+            maxLength >>= 1;
             i++;
         }
         return result;
