@@ -22,10 +22,6 @@ public class SmallSet<T> implements Set<T> {
         if (o != null) {
             int hash = getHashCode(o);
 
-//            System.out.println(o + " contains " + Arrays.toString(values));
-//            System.out.println(hash + " h_contains " + Arrays.toString(indexes));
-//            System.out.println("------------");
-
             if (values[hash].equals(o)) {
                 return true;
             }

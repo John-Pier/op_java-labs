@@ -23,10 +23,7 @@ public class Lab1Main {
         }
 
         Set<Integer> smallSet = setFabric.getSet(b.length);
-
-        for (int element : b) {
-            smallSet.add(element);
-        }
+        smallSet.addAll(Arrays.asList(b));
 
         int size = 0;
         int[] result = new int[b.length];
